@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="JoyOfFastDelivery.Views.StorePage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="StorePage"
+    NavigationPage.HasNavigationBar="False">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height=".2*" />
+            <RowDefinition Height=".8*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Image Aspect="AspectFill" Source="{Binding Store.Header}" />
+        <Frame
+            Grid.Row="1"
+            Margin="0,-20,0,0"
+            Padding="0"
+            BackgroundColor="#b3d5ff"
+            CornerRadius="15">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height=".2*" />
+                    <RowDefinition Height=".8*" />
+                </Grid.RowDefinitions>
+
+                <VerticalStackLayout Margin="25">
+                    <Label
+                        FontFamily="bold"
+                        FontSize="Large"
+                        Text="{Binding Store.Name}"
+                        TextColor="{StaticResource GrisOscuro2}" />
+                    <HorizontalStackLayout Margin="0,10,0,0">
+                        <Image VerticalOptions="Center" WidthRequest="15">
+                            <Image.Source>
+                                <FontImageSource
+                                    FontFamily="AwesomeSolid"
+                                    Glyph="&#xf005;"
+                                    Color="{StaticResource GrisOscuro2}" />
+                            </Image.Source>
+                        </Image>
+                        <Label
+                            Margin="10,0,0,0"
+                            FontFamily="bold"
+                            FontSize="Small"
+                            Text="{Binding Store.Rating}"
+                            TextColor="{StaticResource GrisOscuro2}"
+                            VerticalOptions="Center" />
+                    </HorizontalStackLayout>
+                </VerticalStackLayout>
+                <Frame
+                    Grid.Row="1"
+                    Padding="10"
+                    BackgroundColor="{StaticResource GrisClaro}"
+                    CornerRadius="15">
+                    <Grid>
+                        <CollectionView
+                            Margin="20,10,20,0"
+                            ItemsSource="{Binding Categories}"
+                            SelectedItem="{Binding CurrentCategory}"
+                            SelectionChanged="Category_SelectionChanged"
+                            SelectionChangedCommand="{Binding CategorySelectedCommand}"
+                            SelectionMode="Single">
+                            <CollectionView.ItemsLayout>
+                                <GridItemsLayout
+                                    HorizontalItemSpacing="25"
+                                    Orientation="Vertical"
+                                    Span="1"
+                                    VerticalItemSpacing="15" />
+                            </CollectionView.ItemsLayout>
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid>
+                                        <Image Aspect="AspectFill" Source="{Binding Image}" />
+                                        <Grid BackgroundColor="Black" Opacity=".5" />
+                                        <HorizontalStackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                                            <Image VerticalOptions="Center" WidthRequest="20">
+                                                <Image.Source>
+                                                    <FontImageSource
+                                                        FontFamily="AwesomeSolid"
+                                                        Glyph="&#xf111;"
+                                                        Color="Red" />
+                                                </Image.Source>
+                                            </Image>
+                                            <Label
+                                                FontFamily="bold"
+                                                FontSize="34"
+                                                Text="{Binding Name}"
+                                                TextColor="AntiqueWhite"
+                                                VerticalTextAlignment="Center" />
+                                        </HorizontalStackLayout>
+                                    </Grid>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                    </Grid>
+                </Frame>
+            </Grid>
+
+        </Frame>
+        <Grid Grid.Row="2" HorizontalOptions="FillAndExpand">
+            <Grid
+                BackgroundColor="#70c1ff"
+                ColumnDefinitions="*,*"
+                HeightRequest="70">
+                <Grid.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
+                </Grid.GestureRecognizers>
+                <Label
+                    FontFamily="bold"
+                    FontSize="20"
+                    HorizontalOptions="Center"
+                    Text="NAPLATI"
+                    BackgroundColor="#42adff"
+                    TextColor="White"
+                    VerticalOptions="Center" />
+
+
+                <Label
+                    Grid.Column="1"
+                    FontFamily="black"
+                    HorizontalTextAlignment="Center"
+                    Text="Korpa: 2 stavke - 25,00 KM"
+                    TextColor="White"
+                    FontSize="15"
+                    VerticalTextAlignment="Center" />
+
+
+            </Grid>
+        </Grid>
+    </Grid>
+
+</ContentPage>

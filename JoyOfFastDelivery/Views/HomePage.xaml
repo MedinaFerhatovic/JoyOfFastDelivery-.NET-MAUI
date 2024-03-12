@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="JoyOfFastDelivery.Views.HomePage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:skia="clr-namespace:SkiaSharp.Extended.UI.Controls;assembly=SkiaSharp.Extended.UI"
+    Title="HomePage"
+    NavigationPage.HasNavigationBar="False">
+
+    <ScrollView>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height=".3*" />
+                <RowDefinition Height=".7*" />
+            </Grid.RowDefinitions>
+            <Image Aspect="AspectFill" Source="dummy.png" />
+            <Grid BackgroundColor="#3498db" Opacity=".9" />
+            <Grid VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Image
+                  Aspect="AspectFit"
+                  HeightRequest="200"
+                  Source="applogo.png"
+                  VerticalOptions="CenterAndExpand"
+                  HorizontalOptions="CenterAndExpand" />
+            </Grid>
+
+            <Frame
+                Grid.Row="1"
+                Margin="0,-30,0,0"
+                CornerRadius="25">
+                <Grid>
+                    <VerticalStackLayout>
+                        <Label
+                            FontAttributes="Bold"
+                            FontFamily="bold"
+                            FontSize="Medium"
+                            Text="Dobro došli!"
+                            TextColor="#adadad"
+                            HorizontalTextAlignment="Center"
+                            VerticalTextAlignment="Center"/>
+                        <Label
+                            FontFamily="medium"
+                            Text="Prijavite se da nastavite dalje"
+                            TextColor="#bdc3c7"
+                            HorizontalTextAlignment="Center"
+                            VerticalTextAlignment="Center"/>
+                        <Grid Margin="0,30,0,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width=".2*" />
+                                <ColumnDefinition Width=".8*" />
+                            </Grid.ColumnDefinitions>
+                            <Frame
+                                Padding="0"
+                                BackgroundColor="#17a8e6"
+                                CornerRadius="10"
+                                HeightRequest="60"
+                                HorizontalOptions="Center"
+                                VerticalOptions="Center"
+                                WidthRequest="60">
+                                <Image HorizontalOptions="Center">
+                                    <Image.Source>
+                                        <FontImageSource
+                                            FontFamily="AwesomeSolid"
+                                            Glyph="&#xf0e0;"
+                                            Size="44"
+                                            Color="#ffffff" />
+                                    </Image.Source>
+                                </Image>
+                            </Frame>
+                            <Entry
+                                Grid.Column="1"
+                                Placeholder="Email"
+                                Text="{Binding Email}" />
+                        </Grid>
+                        <Grid Margin="0,25,0,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width=".2*" />
+                                <ColumnDefinition Width=".8*" />
+                            </Grid.ColumnDefinitions>
+                            <Frame
+                                Padding="0"
+                                BackgroundColor="#17a8e6"
+                                CornerRadius="10"
+                                HeightRequest="60"
+                                HorizontalOptions="Center"
+                                VerticalOptions="Center"
+                                WidthRequest="60">
+                                <Image HorizontalOptions="Center">
+                                    <Image.Source>
+                                        <FontImageSource
+                                            FontFamily="AwesomeSolid"
+                                            Glyph="&#xf084;"
+                                            Color="#ffffff" />
+                                    </Image.Source>
+                                </Image>
+                            </Frame>
+                            <Entry
+                                Grid.Column="1"
+                                IsPassword="True"
+                                Placeholder="Lozinka"
+                                Text="{Binding Password}" />
+                        </Grid>
+                        <Button
+                            x:Name="Login"
+                            Margin="0,20,0,0"
+                            BackgroundColor="#17a8e6"
+                            Clicked="Login_Clicked"
+                            HeightRequest="60"
+                            Text="Prijava"
+                            Command="{Binding LoginCommand}"
+                            TextColor="#ffffff" />
+                        <Label
+                            Margin="0,20,0,-10"
+                            HorizontalOptions="Center"
+                            Text="Zaboravljena šifra?" />
+                        <Button
+                            Margin="0,30,0,0"
+                            BackgroundColor="#ffffff"
+                            Clicked="CreateAccount_Clicked"
+                            HeightRequest="60"
+                            Text="Kreiraj profil"
+                            TextColor="#3498db" />
+                        <Grid>
+                            <skia:SKLottieView
+                                 HeightRequest="120"
+                                 RepeatCount="-1"
+                                 Source="initialanimation.json"
+                                 VerticalOptions="CenterAndExpand" 
+                                 HorizontalOptions="CenterAndExpand" />
+                        </Grid>
+
+                    </VerticalStackLayout>
+                </Grid>
+            </Frame>
+        </Grid>
+    </ScrollView>
+</ContentPage>

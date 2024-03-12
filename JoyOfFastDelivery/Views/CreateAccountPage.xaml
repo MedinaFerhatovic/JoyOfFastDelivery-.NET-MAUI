@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="JoyOfFastDelivery.Views.CreateAccountPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:skia="clr-namespace:SkiaSharp.Extended.UI.Controls;assembly=SkiaSharp.Extended.UI"
+    Title="CreateAccountPage"
+    NavigationPage.HasNavigationBar="False">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height=".3*" />
+            <RowDefinition Height=".7*" />
+        </Grid.RowDefinitions>
+        <Image Aspect="AspectFill" Source="dummy.png" />
+        <Grid BackgroundColor="#17a8e6" Opacity=".9" />
+        <Grid VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Image
+Aspect="AspectFit"
+HeightRequest="200"
+Source="applogo.png"
+VerticalOptions="CenterAndExpand"
+HorizontalOptions="CenterAndExpand" />
+        </Grid>
+        <Frame
+            Grid.Row="1"
+            Margin="0,-30,0,0"
+            CornerRadius="25">
+            <Grid>
+                <VerticalStackLayout>
+                    <Label
+                        FontAttributes="Bold"
+                        FontFamily="bold"
+                        FontSize="Medium"
+                        Text="Kreirajte profil"
+                        TextColor="#2D2D2D" />
+                    <Grid Margin="0,30,0,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width=".2*" />
+                            <ColumnDefinition Width=".8*" />
+                        </Grid.ColumnDefinitions>
+                        <Frame
+                            Padding="0"
+                            BackgroundColor="#EDEBF6"
+                            CornerRadius="10"
+                            HeightRequest="60"
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center"
+                            WidthRequest="60">
+                            <Image HorizontalOptions="Center" VerticalOptions="Center">
+                                <Image.Source>
+                                    <FontImageSource
+                                        FontFamily="AwesomeSolid"
+                                        Glyph="&#xf007;"
+                                        Color="#17a8e6" />
+                                </Image.Source>
+                            </Image>
+                        </Frame>
+                        <Entry
+                            Grid.Column="1"
+                            x:Name="NameEntry"
+                            Placeholder="IME"
+                            VerticalOptions="Center" />
+                    </Grid>
+                    <Grid Margin="0,30,0,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width=".2*" />
+                            <ColumnDefinition Width=".8*" />
+                        </Grid.ColumnDefinitions>
+                        <Frame
+                            Padding="0"
+                            BackgroundColor="#EDEBF6"
+                            CornerRadius="10"
+                            HeightRequest="60"
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center"
+                            WidthRequest="60">
+                            <Image HorizontalOptions="Center" VerticalOptions="Center">
+                                <Image.Source>
+                                    <FontImageSource
+                                        FontFamily="AwesomeSolid"
+                                        Glyph="&#xf0e0;"
+                                        Color="#17a8e6" />
+                                </Image.Source>
+                            </Image>
+                        </Frame>
+                        <Entry
+                            Grid.Column="1"
+                            x:Name="EmailEntry"
+                            Placeholder="EMAIL"
+                            VerticalOptions="Center" />
+                    </Grid>
+                    <Grid Margin="0,25,0,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width=".2*" />
+                            <ColumnDefinition Width=".8*" />
+                        </Grid.ColumnDefinitions>
+                        <Frame
+                            Padding="0"
+                            BackgroundColor="#EDEBF6"
+                            CornerRadius="10"
+                            HeightRequest="60"
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center"
+                            WidthRequest="60">
+                            <Image HorizontalOptions="Center" VerticalOptions="Center">
+                                <Image.Source>
+                                    <FontImageSource
+                                        FontFamily="AwesomeSolid"
+                                        Glyph="&#xf084;"
+                                        Color="#17a8e6" />
+                                </Image.Source>
+                            </Image>
+                        </Frame>
+                        <Entry
+                            Grid.Column="1"
+                            x:Name="PasswordEntry"
+                            IsPassword="True"
+                            Placeholder="LOZINKA"
+                            VerticalOptions="Center" />
+                    </Grid>
+
+                    <Button
+                        Margin="0,30,0,0"
+                        BackgroundColor="#17a8e6"
+                        Clicked="CreateAccount_Clicked"
+                        HeightRequest="60"
+                        Text="Kreiraj profil"
+                        TextColor="#FBF6FD" />
+                    <Grid>
+                        <skia:SKLottieView
+         HeightRequest="120"
+         RepeatCount="-1"
+         Source="initialanimation.json"
+         VerticalOptions="CenterAndExpand" 
+         HorizontalOptions="CenterAndExpand" 
+                            Margin="0,20,0,0"
+                            />
+                    </Grid>
+                </VerticalStackLayout>
+            </Grid>
+        </Frame>
+    </Grid>
+
+</ContentPage>

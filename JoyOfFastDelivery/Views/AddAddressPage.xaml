@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="JoyOfFastDelivery.Views.AddAddressPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    
+    Title="AddAddressPage"
+    NavigationPage.HasNavigationBar="False">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height=".4*" />
+            <RowDefinition Height=".6*" />
+        </Grid.RowDefinitions>
+
+        <Grid>
+
+            <Image Aspect="Center" Source="mapholder.png" />
+            <Image
+                HorizontalOptions="Center"
+                Source="pin"
+                VerticalOptions="Center" />
+        </Grid>
+        <Frame
+            Grid.Row="1"
+            Margin="0,-15,0,0"
+            BackgroundColor="#c9e1ff"
+            CornerRadius="35">
+            <VerticalStackLayout>
+                <Label
+                    Margin="15,15,15,20"
+                    FontFamily="bold"
+                    FontSize="Large"
+                    HorizontalOptions="Center"
+                    Text="Odaberite svoju lokaciju"
+                    TextColor="Black" />
+
+                <Frame Padding="10" BackgroundColor="#F6F6F6">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width=".1*" />
+                            <ColumnDefinition Width=".9*" />
+                        </Grid.ColumnDefinitions>
+                        <Image
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center"
+                            WidthRequest="20">
+                            <Image.Source>
+                                <FontImageSource
+                                    FontFamily="AwesomeSolid"
+                                    Glyph="&#xf002;"
+                                    Color="Black" />
+                            </Image.Source>
+                        </Image>
+                        <Entry x:Name="locationEntry" Grid.Column="1" Placeholder="Unesite tačnu adresu (Grad, Ulica, Zona,...)" />
+                    </Grid>
+                </Frame>
+                <Frame Padding="10" BackgroundColor="#F6F6F6" Margin="0,20,0,0">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width=".1*" />
+                            <ColumnDefinition Width=".9*" />
+                        </Grid.ColumnDefinitions>
+                        <Entry x:Name="referenceEntry" Grid.Column="1" Placeholder="Unesite referencu adrese" />
+                    </Grid>
+                </Frame>
+
+                <Button
+                    Padding="23"
+                    FontAttributes="Bold"
+                    Margin="0,30,0,0"
+                    BackgroundColor="#66aaff"
+                    Clicked="SaveAddress_Clicked"
+                    Command="{Binding GuardarDireccionCommand}"
+                    Text="Sačuvaj adresu" />
+            </VerticalStackLayout>
+        </Frame>
+    </Grid>
+</ContentPage>

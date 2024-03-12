@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="JoyOfFastDelivery.Views.MenuPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:converters="clr-namespace:JoyOfFastDelivery.Converters"
+    Title="MenuPage"
+    BackgroundColor="{StaticResource GrisClaro}"
+    NavigationPage.HasNavigationBar="False">
+
+    <ContentPage.Resources>
+        <converters:StringToColorConverter x:Key="ColorConverter" />
+        <Style x:Key="transparent" TargetType="Frame">
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor" Value="Transparent" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState x:Name="Selected">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor" Value="Red" />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+    </ContentPage.Resources>
+
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height=".1*" />
+            <RowDefinition Height=".9*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <CollectionView
+            x:Name="categories"
+            BackgroundColor="#a8cfff"
+            ItemsSource="{Binding Categories}"
+            SelectionMode="Single"
+            Style="{StaticResource transparent}">
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout ItemSpacing="35" Orientation="Horizontal" />
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <Label
+                            Margin="5,0,0,0"
+                            HorizontalOptions="Center"
+                            HorizontalTextAlignment="Center"
+                            Text="{Binding Name}"
+                            TextColor="{Binding Color}"
+                            FontSize="15"
+                            VerticalOptions="Center" />
+                        <Image
+                            Grid.Row="1"
+                            HorizontalOptions="Center"
+                            WidthRequest="15">
+                            <Image.Source>
+                                <FontImageSource
+                                    FontFamily="AwesomeSolid"
+                                    Glyph="&#xf111;"
+                                    Color="{Binding Color, Converter={StaticResource ColorConverter}}" />
+                            </Image.Source>
+                        </Image>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+        <CollectionView
+            Grid.Row="1"
+            Margin="15,0,15,0"
+            ItemsSource="{Binding MenuFiltrado}"
+            SelectedItem="{Binding CurrentProduct}"
+            SelectionChanged="Product_SelectionChanged"
+            SelectionChangedCommand="{Binding ProductChangedCommand}"
+            SelectionMode="Single">
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout ItemSpacing="5" Orientation="Vertical" />
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Padding="10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width=".3*" />
+                            <ColumnDefinition Width=".7*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height=".3*" />
+                            <RowDefinition Height=".4*" />
+                            <RowDefinition Height=".3*" />
+                        </Grid.RowDefinitions>
+                        <BoxView
+                            Grid.RowSpan="3"
+                            Grid.ColumnSpan="2"
+                            Color="White">
+                            <BoxView.Shadow>
+                                <Shadow
+                                    Brush="#969696"
+                                    Opacity="5.8"
+                                    Offset="10,10" />
+                            </BoxView.Shadow>
+                        </BoxView>
+                        <Image
+                            Grid.RowSpan="3"
+                            Aspect="AspectFill"
+                            HeightRequest="150"
+                            HorizontalOptions="Center"
+                            Source="{Binding Image}"
+                            VerticalOptions="Center" />
+                        <Label
+                            Grid.Column="1"
+                            Margin="15,0,10,0"
+                            FontFamily="bold"
+                            FontSize="20"
+                            Text="{Binding Name}"
+                            TextColor="#0054ba"
+                            VerticalTextAlignment="Center" />
+                        <Label
+                            Grid.Row="1"
+                            Grid.Column="1"
+                            Margin="15,0,10,0"
+                            FontFamily="medium"
+                            Opacity=".5"
+                            Text="{Binding Description}"
+                            TextColor="Black"
+                            VerticalTextAlignment="Center" />
+                        <Label
+                            Grid.Row="2"
+                            Grid.Column="1"
+                            Margin="150,0,10,0"
+                            FontFamily="bold"
+                            FontSize="Medium"
+                            Text="{Binding Price, StringFormat='{0:} KM'}"
+                            TextColor="#005f96"
+                            VerticalTextAlignment="Center" />
+                    </Grid>
+
+
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+        <Grid Grid.Row="2" HorizontalOptions="FillAndExpand">
+
+
+            <Grid
+                BackgroundColor="#47bcff"
+                ColumnDefinitions="*,*"
+                HeightRequest="70">
+                <Grid.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
+                </Grid.GestureRecognizers>
+                <Label
+                    FontFamily="bold"
+                    
+                    
+                    
+                    
+                    HorizontalOptions="Center"
+                    Text="Naplati"
+                    FontSize="20"
+                    TextColor="White"
+                    VerticalOptions="Center" />
+
+                <Label
+                    Grid.Column="1"
+                    FontFamily="black"
+                    HorizontalTextAlignment="Center"
+                    Text="Korpa: 2 stavke - 25,00 KM"
+                    TextColor="White"
+                    VerticalTextAlignment="Center" />
+
+
+            </Grid>
+        </Grid>
+    </Grid>
+
+</ContentPage>

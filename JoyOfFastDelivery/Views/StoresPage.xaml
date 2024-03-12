@@ -1,0 +1,393 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="JoyOfFastDelivery.Views.StoresPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="StoresPage"
+    NavigationPage.HasNavigationBar="False">
+
+    <ContentPage.Background>
+        <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+            <GradientStop Color="#3a5bc5" Offset="0" />
+            <GradientStop Color="#add8e6" Offset="1" />
+        </LinearGradientBrush>
+    </ContentPage.Background>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height=".3*" />
+            <RowDefinition Height=".7*" />
+        </Grid.RowDefinitions>
+
+        <VerticalStackLayout Spacing="0">
+            <Image
+               Aspect="AspectFit"
+               HeightRequest="100"
+               Source="applogo.png"
+               VerticalOptions="CenterAndExpand"
+               HorizontalOptions="CenterAndExpand" />
+            <Grid Margin="25,10,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width=".9*" />
+                    <ColumnDefinition Width=".1*" />
+                </Grid.ColumnDefinitions>
+                <Frame Padding="0" BackgroundColor="#3a5bc5">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width=".3*" />
+                            <ColumnDefinition Width=".9*" />
+                        </Grid.ColumnDefinitions>
+                        <Image
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
+                WidthRequest="20">
+                            <Image.Source>
+                                <FontImageSource FontFamily="AwesomeSolid" Glyph="&#xf002;" />
+                            </Image.Source>
+                        </Image>
+                        <Entry
+                           Grid.Column="1"
+                           x:Name="searchEntry"
+                           FontFamily="bold"
+                           Placeholder="Pretraži restoran"
+                           PlaceholderColor="#FFFACD"
+                           TextColor="#FFFACD"
+                           TextChanged="SearchEntry_TextChanged"/>
+
+
+                    </Grid>
+
+                </Frame>
+
+
+            </Grid>
+            <Label
+                Margin="25,25,0,10"
+                FontAttributes="Bold"
+                FontFamily="bold"
+                Text="ADRESA ZA ISPORUKU"
+                TextColor="White" />
+            <HorizontalStackLayout>
+                <Grid Margin="0,10,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width=".8*" />
+                        <ColumnDefinition Width=".2*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
+                    </Grid.GestureRecognizers>
+                    <Label
+                        x:Name="CurrentAddress"
+                        Margin="25,0,0,0"
+                        FontFamily="regular"
+                        TextColor="White"
+                        VerticalOptions="Center" />
+                    <Label
+                        x:Name="CurrentReference"
+                        Margin="25,30,0,0"
+                        FontFamily="regular"
+                        FontSize="Small" 
+                        TextColor="Gray"
+                        VerticalOptions="Center" />
+
+
+                    <Image
+                        Grid.Column="1"
+                        Margin="15,0,0,0"
+                        VerticalOptions="Center"
+                        WidthRequest="15">
+                        <Image.Source>
+                            <FontImageSource
+                                FontFamily="AwesomeSolid"
+                                Glyph="&#xf078;"
+                                Color="White" />
+                        </Image.Source>
+                    </Image>
+                </Grid>
+            </HorizontalStackLayout>
+
+          
+
+        </VerticalStackLayout>
+
+        <Frame
+            Grid.Row="1"
+            Margin="0,40,0,-20"
+            BackgroundColor="#F2F1F6"
+            CornerRadius="25">
+            <CollectionView
+                x:Name="lstStores"
+                SelectionChanged="lstStores_SelectionChanged"
+                SelectionMode="Single">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout ItemSpacing="20" Orientation="Vertical" />
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Padding="5">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height=".6*" />
+                                <RowDefinition Height=".4*" />
+                            </Grid.RowDefinitions>
+                            <BoxView
+                                Grid.RowSpan="2"
+                                CornerRadius="20"
+                                Color="White">
+                                <BoxView.Shadow>
+                                    <Shadow
+                                        Brush="#CFD0D4"
+                                        Opacity="0.8"
+                                        Offset="10,10" />
+                                </BoxView.Shadow>
+                            </BoxView>
+
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height=".6*" />
+                                    <RowDefinition Height=".4*" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width=".4*" />
+                                    <ColumnDefinition Width=".2*" />
+                                    <ColumnDefinition Width=".4*" />
+                                </Grid.ColumnDefinitions>
+                                <Image
+                                    Grid.RowSpan="2"
+                                    Grid.ColumnSpan="3"
+                                    Aspect="AspectFit"
+                                    Source="{Binding Header}" />
+                                <Grid
+                                    Grid.Row="1"
+                                    Grid.Column="0"
+                                    Margin="0,0,0,15"
+                                    HeightRequest="100"
+                                    HorizontalOptions="Start"
+                                    VerticalOptions="Center"
+                                    WidthRequest="100">
+                                    <Border
+                                        HeightRequest="100"
+                                        HorizontalOptions="Center"
+                                        StrokeShape="Ellipse"
+                                        StrokeThickness="4">
+                                        <Border.Stroke>
+                                            <LinearGradientBrush EndPoint="0,1">
+                                                <GradientStop Offset="0.0" Color="#FEFEEF" />
+                                                <GradientStop Offset="0.25" Color="#EBD570" />
+                                                <GradientStop Offset="0.5" Color="#FF94C3" />
+                                                <GradientStop Offset="0.75" Color="#A573E4" />
+                                                <GradientStop Offset="1.0" Color="#A9E2EE" />
+                                            </LinearGradientBrush>
+                                        </Border.Stroke>
+                                        <Image HorizontalOptions="Center" Source="{Binding Logo}" />
+                                    </Border>
+                                </Grid>
+                                <Frame
+                                    Grid.Row="1"
+                                    Grid.Column="2"
+                                    Padding="0"
+                                    BackgroundColor="#F8F8F7"
+                                    CornerRadius="100"
+                                    HeightRequest="30"
+                                    HorizontalOptions="Center"
+                                    VerticalOptions="Center"
+                                    WidthRequest="90">
+                                    <HorizontalStackLayout HorizontalOptions="Center" VerticalOptions="Center">
+                                        <Image
+                                            Margin="0,0,15,0"
+                                            VerticalOptions="Center"
+                                            WidthRequest="15">
+                                            <Image.Source>
+                                                <FontImageSource
+                                                    FontFamily="AwesomeSolid"
+                                                    Glyph="&#xf005;"
+                                                    Color="Black" />
+                                            </Image.Source>
+                                        </Image>
+                                        <Label
+                                            Grid.Row="1"
+                                            FontFamily="bold"
+                                            Text="{Binding Rating}"
+                                            TextColor="Black"
+                                            VerticalOptions="Center" />
+                                    </HorizontalStackLayout>
+                                </Frame>
+
+                            </Grid>
+
+                            <Grid
+                                Grid.Row="1"
+                                Margin="0,-5,0,0"
+                                Padding="10">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+
+                                <Label
+                                    Grid.ColumnSpan="3"
+                                    FontFamily="bold"
+                                    FontSize="Large"
+                                    HorizontalTextAlignment="Center"
+                                    Text="{Binding Name}"
+                                    TextColor="Black" />
+                                <Label
+                                    Grid.Row="1"
+                                    Grid.Column="2"
+                                    Margin="0,10,0,0"
+                                    FontFamily="regular"
+                                    HorizontalOptions="End"
+                                    Text="{Binding DeliveryTime}"
+                                    TextColor="Black"
+                                    VerticalOptions="Start" />
+
+                                <Label
+                                    Grid.Row="1"
+                                    Margin="0,10,0,0"
+                                    FontFamily="regular"
+                                    Text="{Binding Minimum, StringFormat='{0:} KM minimum'}"
+                                    TextColor="Black"
+                                    VerticalOptions="Start" />
+                                <HorizontalStackLayout
+                                    Grid.Row="1"
+                                    Grid.Column="1"
+                                    Margin="0,10,0,0"
+                                    HorizontalOptions="CenterAndExpand"
+                                    VerticalOptions="Start">
+
+                                    <Image HeightRequest="15" VerticalOptions="Center">
+                                        <Image.Source>
+                                            <FontImageSource
+                                                FontFamily="AwesomeSolid"
+                                                Glyph="&#xf48b;"
+                                                Color="Black" />
+                                        </Image.Source>
+                                    </Image>
+                                    <Label
+                                        Margin="10,0,0,0"
+                                        FontFamily="regular"
+                                        HorizontalTextAlignment="Center"
+                                        Text="{Binding ServiceFee, StringFormat='{0:} KM'}"
+                                        TextColor="Black"
+                                        VerticalOptions="Center" />
+                                </HorizontalStackLayout>
+
+                            </Grid>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Frame>
+
+        <Frame
+            x:Name="addressesList"
+            Grid.RowSpan="2"
+            BackgroundColor="#dcecf7"
+            CornerRadius="30">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height=".15*" />
+                    <RowDefinition Height=".65*" />
+                    <RowDefinition Height=".2*" />
+                </Grid.RowDefinitions>
+                <VerticalStackLayout>
+                    <Label
+                        FontAttributes="Bold"
+                        FontFamily="bold"
+                        FontSize="Large"
+                        Text="Adresa za isporuku"
+                        TextColor="Black" />
+                    <Frame
+                        Margin="0,10,0,0"
+                        Padding="0"
+                        BackgroundColor="#cfe9fa"
+                        HeightRequest="45">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width=".1*" />
+                                <ColumnDefinition Width=".9*" />
+                            </Grid.ColumnDefinitions>
+
+                            <Image HeightRequest="15" VerticalOptions="Center">
+                                <Image.Source>
+                                    <FontImageSource
+                                        FontFamily="AwesomeSolid"
+                                        Glyph="&#xf002;"
+                                        Color="Black" />
+                                </Image.Source>
+                            </Image>
+                            <Entry Grid.Column="1" VerticalOptions="Center" TextChanged="SearchEntryAddress_TextChanged"/>
+
+
+                        </Grid>
+
+                    </Frame>
+                </VerticalStackLayout>
+                <CollectionView x:Name="lstAddresses" Grid.Row="1">
+                    <CollectionView.ItemsLayout>
+                        <LinearItemsLayout ItemSpacing="10" Orientation="Vertical" />
+                    </CollectionView.ItemsLayout>
+
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Frame CornerRadius="25">
+                                <StackLayout Orientation="Vertical">
+                                    <RadioButton
+                                        CheckedChanged="Address_CheckedChanged"
+                                        Content="{Binding Location}"
+                                        GroupName="Addresses"
+                                         FontSize="Medium"/>
+                                    <StackLayout Orientation="Vertical" Margin="0,5,0,0">
+                                        <Label Text="{Binding Reference}" FontSize="Small" TextColor="Gray"/>
+                                    </StackLayout>
+                                    
+                                    <Image HorizontalOptions="EndAndExpand">
+                                        <Image.Source>
+                                            <FontImageSource
+                                                FontFamily="AwesomeSolid"
+                                                Glyph="&#xf142;"
+                                                Color="#383838" />
+                                        </Image.Source>
+                                    </Image>
+                                </StackLayout>
+                                
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+                <StackLayout
+                    Grid.Row="2"
+                    Orientation="Horizontal"
+                    HorizontalOptions="Center"
+                    Spacing="25">
+                    <Button
+                        Margin="0,15,0,0"
+                        BackgroundColor="#135a8a"
+                        Clicked="SelectAddress_Clicked"
+                        HeightRequest="70"
+                        Text="Odaberi Adresu"
+                         FontAttributes="Bold"
+                        VerticalOptions="Center"
+                        WidthRequest="160"/>
+                    <Button
+                        Margin="0,15,0,0"
+                        BackgroundColor="#1278c7"
+                        Clicked="AddAddress_Clicked"
+                        FontAttributes="Bold"
+                        HeightRequest="70"
+                        Text="Dodaj novu adresu"
+                        VerticalOptions="Center"
+                         WidthRequest="160"/>
+                </StackLayout>
+
+            </Grid>
+        </Frame>
+
+
+    </Grid>
+
+</ContentPage>
